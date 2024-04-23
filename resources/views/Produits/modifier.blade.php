@@ -2,7 +2,7 @@
 @section('title','Modifier')
 @section('main')
 
-  <form method="post" action="{{route('Produit.save')}}"  >
+  <form method="post" action="{{route('Produit.save')}}" enctype="multipart/form-data" >
 
 
   @csrf
@@ -21,6 +21,10 @@
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Prix d'achat</label>
       <input  type="number" value={{$produit_details[0]->pa}}  name="pa" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">image</label>
+      <input  type="file"  name="image" class="form-control" id="exampleInputPassword1">
     </div>
    
     <div class="mb-3">

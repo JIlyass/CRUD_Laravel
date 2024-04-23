@@ -25,8 +25,10 @@
                 <td>
                     @if ($toDelete=="yes" )
                         <form action="{{route('Produit.supprimer',['Produit'=>$produit_details->codePr])}}" method="post">
+
                             @csrf
                             @method('delete')
+                            <input type="hidden" name="codePrd" value="{{$produit_details->codePr}}">
                             <input type="submit" value="supprimer" class="btn btn-danger">
                         </form>
                     @endif
