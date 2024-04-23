@@ -12,7 +12,15 @@
     <div class="container mt3">
         <h3>Produits</h3>
         <a href="{{route('Produit.ajouter')}}"> <button class="btn btn-warning">Ajouter Nouveau Produit</button></a> <br> <br>
-        <br>
+        <br> <hr>
+        @if (session()->has('status'))
+            <div class="alert alert-success">
+            {{session("status")}}
+                
+        
+        </div>
+        @endif
+        
         <form action="{{route('Produit.index')}}" method="post" name="f1">
             @csrf
             @section('search-form')
@@ -31,10 +39,10 @@
         </select>
         </form>
        
-        <div class="d-flex">
+        <div class="d-flex row ">
         @foreach ($dbProduits as $item)
-            <div class="card" style="width: 18rem;">
-                    <img src="/Exemple_image.jpeg" class="card-img-top" alt="produit image">
+            <div class="card col-3 h-100" style="width: 18rem;">
+                    <img src="{{url('storage/'.$item->image)}}" width="200px" height="200px" class="card-img-top" alt="produit image">
                 <div class="card-body">
                     <h3 class="card-title">{{$item->nomPr}}</h3>
                     <p class="card-text">

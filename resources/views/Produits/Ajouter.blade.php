@@ -2,7 +2,7 @@
 @section('title','Ajouter')
 @section('main')
 
-  <form method="post" action="{{route('Produit.add')}}"  >
+  <form method="post" action="{{route('Produit.add')}}" enctype="multipart/form-data"  >
 
 
   @csrf
@@ -21,6 +21,10 @@
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Prix d'achat</label>
       <input  type="number"  name="pa" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">image</label>
+      <input  type="file"  name="image" class="form-control" id="exampleInputPassword1">
     </div>
    
     <div class="mb-3">

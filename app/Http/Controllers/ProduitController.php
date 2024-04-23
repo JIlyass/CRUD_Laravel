@@ -43,12 +43,23 @@ class ProduitController extends Controller
         return view('Produits.ajouter',["dbCat"=>$dbCat,"toUpdate"=>$produit,"codePr"=>$req->idPr]);
     }
     public function add(Request $req){
-        DB::table("produits")->insert([
-            "nomPr"=>$req->nomPr,
-            "pu"=>$req->pu,
-            "pa"=>$req->pa,
-            "categories_id"=>$req->categories_id
-        ]);
+
+        if($req->hasFile("image")){
+            $ext=$req->image->extension();
+            $name="img_".now()->valueOf().".".$ext;
+            $path=$req->image->storeAs("images",$name,"public");
+            DB::table("produits")->insert([
+                "nomPr"=>$req->nomPr,
+                "pu"=>$req->pu,
+                "pa"=>$req->pa,
+                "image"=>$path,
+                "categories_id"=>$req->categories_id
+            ]);
+            $status="Produits AJouté avec succés !";
+            session()->flash("status",$status);
+        }
+
+
         return redirect()->route('Produit.index');
 
 
