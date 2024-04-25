@@ -23,12 +23,7 @@
         
         <form action="{{route('Produit.index')}}" method="post" name="f1">
             @csrf
-            @section('search-form')
-            <div class="form-inline my-2 my-lg-0" action="{{route('Produit.index')}}" method="post">
-                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="search" />
-              </div>
-            @endsection
+           
             <select onchange="f1.submit()" name="categorie" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
             {{-- <select name="categorie" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"> --}}
             <option value="-1">Tous les catégories</option>

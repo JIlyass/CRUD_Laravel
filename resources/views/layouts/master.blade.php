@@ -10,7 +10,7 @@
             background-color: silver;
         }
     </style>
-    <title>CRUD-  @yield('title')  </title>
+    <title>E-Commerce  @yield('title')  </title>
 </head>
 <body>
     @include('layouts.nav')

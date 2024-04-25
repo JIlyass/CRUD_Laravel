@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProduitRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -34,9 +35,9 @@ class ProduitController extends Controller
 
     public function supprimer(Request $req){
         $codePr=$req->codePrd;
-        $prd=DB::table('produits')->where("codePr",$codePr)->get();
+        $prd=DB::table('produits')->where("codePr",$codePr)->first  ();
 
-        Storage::delete('public/' . $prd[0]->image);
+        Storage::delete('public/' . $prd->image);
 
         DB::table('produits')->where("codePr",$codePr)->delete();
 
@@ -48,7 +49,7 @@ class ProduitController extends Controller
         $dbCat=DB::table('categories')->get();
         return view('Produits.ajouter',["dbCat"=>$dbCat,"toUpdate"=>$produit,"codePr"=>$req->idPr]);
     }
-    public function add(Request $req){
+    public function add(ProduitRequest $req){
 
         if($req->hasFile("image")){
             $ext=$req->image->extension();
@@ -59,7 +60,8 @@ class ProduitController extends Controller
                 "pu"=>$req->pu,
                 "pa"=>$req->pa,
                 "image"=>$path,
-                "categories_id"=>$req->categories_id
+                "categories_id"=>$req->categories_id,
+                "qteS"=>$req->qteS
             ]);
             $status="Produits AJouté avec succés !";
             session()->flash("status",$status);
@@ -79,9 +81,9 @@ class ProduitController extends Controller
     }
     public function save(Request $req){
 
-        $prd=DB::table('produits')->where("codePr",$req->codePr)->get();
-
-        Storage::delete('public/' . $prd[0]->image);
+        $prd=DB::table('produits')->where("codePr",$req->codePr)->first();
+        // dd($prd);
+        Storage::delete('public/' . $prd->image);
 
         $ext=$req->image->extension();
         $name="img_".now()->valueOf().".".$ext;
