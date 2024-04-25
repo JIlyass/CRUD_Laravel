@@ -26,8 +26,8 @@ class AuthRequest extends FormRequest
         return [
             "name"=>"required|string|max:256       ",
             "email"=>"required|email|string|unique:users",
-            "password"=>"required|string|confirmed",
-            "Cpassword"=>"required"
+            "password"=>"required|string",
+            "Cpassword"=>"required|same:password"
         ];
     }
     public function messages(){
@@ -37,8 +37,9 @@ class AuthRequest extends FormRequest
         "email"=>"email est obligatoire , doit contient '@' et '.'  ",
         "email.unique"=>"email est déjà utilisé !  ",
         "password"=>"password est obligatoire ",
-        "password.confirmed"=>"2eme password n est pas conpatible !  ",
-        "Cpassword"=>"confirmation est necessaire ! "
+        // "password.confirmed"=>"2eme password n est pas conpatible !  ",
+        "Cpassword.required"=>"confirmation est necessaire ! ",
+        "Cpassword.same"=>"2eme password n est pas conpatible ! "
 
         ];
     }

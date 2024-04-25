@@ -44,7 +44,8 @@ class AuthController extends Controller
             "email"=> $req->email,
             "password"=> Hash::make($req->password)
                 
-        ]);        
+        ]);   
+        session()->regenerate();    
         return to_route('welcome');
     }
 
