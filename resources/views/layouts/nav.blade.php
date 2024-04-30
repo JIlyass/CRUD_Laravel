@@ -30,8 +30,8 @@
             </form>
 
               @else
-              <a href="{{route('login')}}"> <input class="btn btn-outline-success my-2 my-sm-0"  value="se connecter"  /></a> &nbsp;
-              <a href="{{route('signin')}}"> <input class="btn btn-outline-primary my-2 my-sm-0"  value="s'inscrire"  /></a>
+              <a href="{{route('login')}}"> <input class="btn btn-outline-success my-2 my-sm-0"  value="se connecter" type="button" /></a> &nbsp;
+              <a href="{{route('signin')}}"> <input class="btn btn-outline-primary my-2 my-sm-0"  value="s'inscrire"  type="button"/></a>
 
           @endauth
           </div>
